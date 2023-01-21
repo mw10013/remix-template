@@ -1,9 +1,4 @@
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from "@remix-run/node";
-import { json } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -11,17 +6,16 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from "@remix-run/react";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 
-export type ContextType = {};
+// export type ContextType = {};
 
-export const loader = (async () => {
-  return json({
-    data: "data",
-  });
-}) satisfies LoaderFunction;
+// export const loader = (async () => {
+//   return json({
+//     data: "data",
+//   });
+// }) satisfies LoaderFunction;
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
@@ -34,10 +28,10 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data } = useLoaderData<typeof loader>();
-  const context: ContextType = {};
+  // const context: ContextType = {};
 
+  // <div> with min-h-full help register layout correctly.
+  // Mimics nextjs: #__next { min-height: 100%; }
   return (
     <html lang="en">
       <head>
@@ -45,7 +39,10 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet context={context} />
+        <div className="min-h-full">
+          {/* <Outlet context={context} /> */}
+          <Outlet />
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
