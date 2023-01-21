@@ -1,6 +1,5 @@
 import type { PlaywrightTestConfig } from "@playwright/test";
 import { devices } from "@playwright/test";
-import { customerStorageStatePath } from "./e2e/global-setup";
 
 /**
  * Read environment variables from file.
@@ -42,7 +41,6 @@ const config: PlaywrightTestConfig = {
   globalSetup: require.resolve("./e2e/global-setup"),
   use: {
     baseURL: `http://localhost:${PORT}`,
-    storageState: customerStorageStatePath,
     // headless: false,
 
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
