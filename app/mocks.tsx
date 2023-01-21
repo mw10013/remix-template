@@ -1,3 +1,6 @@
+export {}
+
+/*
 import * as React from "react";
 import * as ReactRouter from "react-router";
 import type * as RemixReact from "@remix-run/react";
@@ -78,3 +81,4 @@ export function createRemixReactMock(options: CreateRemixReactMockOptions) {
     Scripts: vi.fn(() => <script data-testid="remix-scripts" />),
   };
 }
+*/
