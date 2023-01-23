@@ -19,16 +19,16 @@ export default function Index() {
         <PolymorphicButton as={Link} color="cyan" to="#link">
           Link
         </PolymorphicButton>
-        <PolymorphicButton as="button" variant="outline" color="cyan" onClick={() => alert("click")}>
+        <PolymorphicButton as="button" variant="outline"onClick={() => alert("click")}>
           Button
         </PolymorphicButton>
-        <PolymorphicButton as={Link} variant="outline" color="cyan" to="#link">
+        <PolymorphicButton as={Link} variant="outline"to="#link">
           Link
         </PolymorphicButton>
-        <PolymorphicButton as="button" variant="outline" color="cyan" className="py-8" onClick={() => alert("click")}>
+        <PolymorphicButton as="button" variant="outline" color="gray" className="py-8" onClick={() => alert("click")}>
           Button
         </PolymorphicButton>
-        <PolymorphicButton as={Link} variant="outline" color="cyan" className="py-8"  to="#link">
+        <PolymorphicButton as={Link} variant="outline" color="gray" className="py-8"  to="#link">
           Link
         </PolymorphicButton>
       </div>

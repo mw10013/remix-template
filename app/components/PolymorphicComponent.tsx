@@ -75,7 +75,7 @@ type PolymorphicButtonProps<
   V extends keyof typeof variantStyles
 > = PolymorphicComponentPropsWithRef<
   C,
-  { variant?: V; color?: string; className?: string }
+  { variant?: V; color?: keyof (typeof variantStyles)[V]; className?: string }
 >;
 
 type PolymorphicButtonComponent = <
