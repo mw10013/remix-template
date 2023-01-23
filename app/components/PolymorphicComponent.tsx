@@ -9,7 +9,8 @@ type PropsToOmit<C extends React.ElementType, P> = keyof (AsProp<C> & P);
 export type PolymorphicComponentPropsWithoutRef<
   C extends React.ElementType,
   Props = {}
-> = React.PropsWithChildren<Props & AsProp<C>> &
+> = Props &
+  AsProp<C> &
   Omit<React.ComponentPropsWithoutRef<C>, PropsToOmit<C, Props>>;
 
 export type PolymorphicComponentPropsWithRef<
@@ -29,18 +30,16 @@ type Rainbow =
   | "indigo"
   | "violet";
 
-type TextProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<
-  C,
-  { color?: Rainbow | "black" }
->;
+type PolymorphicTextProps<C extends React.ElementType> =
+  PolymorphicComponentPropsWithRef<C, { color?: Rainbow | "black" }>;
 
-type TextComponent = <C extends React.ElementType = "span">(
-  props: TextProps<C>
+type PolymorphicTextComponent = <C extends React.ElementType = "span">(
+  props: PolymorphicTextProps<C>
 ) => React.ReactElement | null;
 
-export const PolymorphicText: TextComponent = React.forwardRef(
-  function TextComponent<C extends React.ElementType = "span">(
-    { as, color, children, ...props }: TextProps<C>,
+export const PolymorphicText: PolymorphicTextComponent = React.forwardRef(
+  function PolymorphicTextComponent<C extends React.ElementType = "span">(
+    { as, color, children, ...props }: PolymorphicTextProps<C>,
     ref?: PolymorphicRef<C>
   ) {
     const Component = as || "span";
@@ -52,3 +51,5 @@ export const PolymorphicText: TextComponent = React.forwardRef(
     );
   }
 );
+
+// type PolymorphicButtonProps<C extends React.ElementType> =
