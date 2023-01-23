@@ -73,7 +73,7 @@ const variantStyles = {
 type PolymorphicButtonProps<C extends React.ElementType> =
   PolymorphicComponentPropsWithRef<
     C,
-    { variant?: keyof typeof variantStyles; color?: string }
+    { variant?: keyof typeof variantStyles; color?: string; className?: string }
   >;
 
 type PolymorphicButtonComponent = <C extends React.ElementType = "button">(
@@ -89,14 +89,13 @@ export const PolymorphicButton: PolymorphicButtonComponent = React.forwardRef(
     variant = variant ?? "solid";
     color = color ?? "gray";
 
-    const classNameString = clsx(
+    className = clsx(
       baseStyles[variant],
       // @ts-ignore TODO: fix types
       variantStyles[variant][color],
       className
     );
 
-    // return <Component ref={ref} className={className} {...props} />;
-    return <Component ref={ref} className={classNameString} {...props} />;
+    return <Component ref={ref} className={className} {...props} />;
   }
 );

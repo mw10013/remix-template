@@ -11,7 +11,7 @@ export default function Index() {
       <PolymorphicText as="div" color="indigo" className="text-4xl">
         Remix Template
       </PolymorphicText>
-      <div className="flex gap-4 mt-8">
+      <div className="flex flex-col w-32 mx-auto gap-4 mt-8">
         <PolymorphicButton>Default</PolymorphicButton>
         <PolymorphicButton as="button" color="cyan" onClick={() => alert("click")}>
           Button
@@ -23,6 +23,12 @@ export default function Index() {
           Button
         </PolymorphicButton>
         <PolymorphicButton as={Link} variant="outline" color="cyan" to="#link">
+          Link
+        </PolymorphicButton>
+        <PolymorphicButton as="button" variant="outline" color="cyan" className="py-8" onClick={() => alert("click")}>
+          Button
+        </PolymorphicButton>
+        <PolymorphicButton as={Link} variant="outline" color="cyan" className="py-8"  to="#link">
           Link
         </PolymorphicButton>
       </div>
