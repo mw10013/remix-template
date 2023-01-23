@@ -70,29 +70,40 @@ const variantStyles = {
   },
 };
 
-type PolymorphicButtonProps<C extends React.ElementType> =
-  PolymorphicComponentPropsWithRef<
-    C,
-    { variant?: keyof typeof variantStyles; color?: string; className?: string }
-  >;
+type PolymorphicButtonProps<
+  C extends React.ElementType,
+  V extends keyof typeof variantStyles
+> = PolymorphicComponentPropsWithRef<
+  C,
+  { variant?: V; color?: string; className?: string }
+>;
 
-type PolymorphicButtonComponent = <C extends React.ElementType = "button">(
-  props: PolymorphicButtonProps<C>
+type PolymorphicButtonComponent = <
+  C extends React.ElementType = "button",
+  V extends keyof typeof variantStyles = "solid"
+>(
+  props: PolymorphicButtonProps<C, V>
 ) => React.ReactElement | null;
 
 export const PolymorphicButton: PolymorphicButtonComponent = React.forwardRef(
-  function PolymorphicButtonComponent<C extends React.ElementType = "button">(
-    { as, variant, color, className, ...props }: PolymorphicButtonProps<C>,
+  function PolymorphicButtonComponent<
+    C extends React.ElementType = "button",
+    V extends keyof typeof variantStyles = "solid"
+  >(
+    { as, variant, color, className, ...props }: PolymorphicButtonProps<C, V>,
     ref?: PolymorphicRef<C>
   ) {
     const Component = as || "button";
-    variant = variant ?? "solid";
+    // variant = variant ?? "solid";
+    const variantIndex = variant ?? "solid";
     color = color ?? "gray";
 
     className = clsx(
-      baseStyles[variant],
+      //   baseStyles[variant],
+      baseStyles[variantIndex],
       // @ts-ignore TODO: fix types
-      variantStyles[variant][color],
+      //   variantStyles[variant][color],
+      variantStyles[variantIndex][color],
       className
     );
 
