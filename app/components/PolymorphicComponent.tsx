@@ -87,8 +87,8 @@ type PolymorphicButtonComponent = <
 
 export const PolymorphicButton: PolymorphicButtonComponent = React.forwardRef(
   function PolymorphicButtonComponent<
-    C extends React.ElementType = "button",
-    V extends keyof typeof variantStyles = "solid"
+    C extends React.ElementType,
+    V extends keyof typeof variantStyles
   >(
     { as, variant, color, className, ...props }: PolymorphicButtonProps<C, V>,
     ref?: PolymorphicRef<C>
