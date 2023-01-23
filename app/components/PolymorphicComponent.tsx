@@ -33,34 +33,30 @@ type PolymorphicRef<C extends React.ElementType> =
   React.ComponentPropsWithRef<C>["ref"];
 
 /**
-* This is the updated component props using PolymorphicComponentPropWithRef
-*/
-type TextProps<C extends React.ElementType> = 
-PolymorphicComponentPropWithRef<
+ * This is the updated component props using PolymorphicComponentPropWithRef
+ */
+type TextProps<C extends React.ElementType> = PolymorphicComponentPropWithRef<
   C,
   { color?: Rainbow | "black" }
 >;
 
 /**
-* This is the type used in the type annotation for the component
-*/
+ * This is the type used in the type annotation for the component
+ */
 type TextComponent = <C extends React.ElementType = "span">(
   props: TextProps<C>
 ) => React.ReactElement | null;
 
-export const Text: TextComponent = React.forwardRef(
-  <C extends React.ElementType = "span">(
-    { as, color, children }: TextProps<C>,
-    ref?: PolymorphicRef<C>
-  ) => {
-    const Component = as || "span";
+export const Text: TextComponent = React.forwardRef(function TextComponent<
+  C extends React.ElementType = "span"
+>({ as, color, children, ...props }: TextProps<C>, ref?: PolymorphicRef<C>) {
+  const Component = as || "span";
 
-    const style = color ? { style: { color } } : {};
+  const style = color ? { style: { color } } : {};
 
-    return (
-      <Component {...style} ref={ref}>
-        {children}
-      </Component>
-    );
-  }
-);
+  return (
+    <Component {...style} {...props} ref={ref}>
+      {children}
+    </Component>
+  );
+});
