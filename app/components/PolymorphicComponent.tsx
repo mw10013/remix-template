@@ -1,6 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 
+// https://blog.logrocket.com/build-strongly-typed-polymorphic-components-react-typescript/
+
 type AsProp<C extends React.ElementType> = {
   as?: C;
 };
@@ -80,7 +82,9 @@ type PolymorphicButtonProps<
 
 type PolymorphicButtonComponent = <
   C extends React.ElementType = "button",
+  //   C extends React.ElementType,
   V extends keyof typeof variantStyles = "solid"
+  //   V extends keyof typeof variantStyles
 >(
   props: PolymorphicButtonProps<C, V>
 ) => React.ReactElement | null;
@@ -96,14 +100,15 @@ export const PolymorphicButton: PolymorphicButtonComponent = React.forwardRef(
     const Component = as || "button";
     // variant = variant ?? "solid";
     const variantIndex = variant ?? "solid";
-    color = color ?? "gray";
+    // color = color ?? "gray";
+    const colorIndex = color ?? "gray";
 
     className = clsx(
       //   baseStyles[variant],
       baseStyles[variantIndex],
-      // @ts-ignore TODO: fix types
       //   variantStyles[variant][color],
-      variantStyles[variantIndex][color],
+      // @ts-ignore
+      variantStyles[variantIndex][colorIndex],
       className
     );
 
