@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 
 // https://blog.logrocket.com/build-strongly-typed-polymorphic-components-react-typescript/
+// https://www.benmvp.com/blog/forwarding-refs-polymorphic-react-component-typescript/
 
 type AsProp<C extends React.ElementType> = {
   as?: C;
