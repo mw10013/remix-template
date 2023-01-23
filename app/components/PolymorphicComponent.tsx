@@ -4,14 +4,12 @@ type AsProp<C extends React.ElementType> = {
   as?: C;
 };
 
-type PropsToOmit<C extends React.ElementType, P> = keyof (AsProp<C> & P);
-
 export type PolymorphicComponentPropsWithoutRef<
   C extends React.ElementType,
   Props = {}
 > = Props &
   AsProp<C> &
-  Omit<React.ComponentPropsWithoutRef<C>, PropsToOmit<C, Props>>;
+  Omit<React.ComponentPropsWithoutRef<C>, keyof (Props & AsProp<C>)>;
 
 export type PolymorphicComponentPropsWithRef<
   C extends React.ElementType,
@@ -52,4 +50,21 @@ export const PolymorphicText: PolymorphicTextComponent = React.forwardRef(
   }
 );
 
-// type PolymorphicButtonProps<C extends React.ElementType> =
+type PolymorphicButtonProps<C extends React.ElementType> =
+  PolymorphicComponentPropsWithRef<C, { variant?: string; color?: string }>;
+
+type PolymorphicButtonComponent = <C extends React.ElementType = "button">(
+  props: PolymorphicButtonProps<C>
+) => React.ReactElement | null;
+
+export const PolymorphicButton: PolymorphicButtonComponent = React.forwardRef(
+  function PolymorphicButtonComponent<C extends React.ElementType = "button">(
+    { as, variant, color, className, ...props }: PolymorphicButtonProps<C>,
+    ref?: PolymorphicRef<C>
+  ) {
+    const Component = as || "button";
+    return (
+        <Component ref={ref} className={className} {...props} />
+    )
+  }
+);

@@ -1,4 +1,4 @@
-import { PolymorphicText } from "@/components/PolymorphicComponent";
+import { PolymorphicButton, PolymorphicText } from "@/components/PolymorphicComponent";
 
 export default function Index() {
   // const { session } = useOutletContext<ContextType>();
@@ -7,6 +7,9 @@ export default function Index() {
       <PolymorphicText as="div" color="indigo" className="text-4xl">
         Remix Template
       </PolymorphicText>
+      <div className="flex gap-4 mt-8">
+        <PolymorphicButton>Button</PolymorphicButton>
+      </div>
     </div>
   );
 }
