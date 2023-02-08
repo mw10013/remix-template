@@ -150,6 +150,7 @@ export const Button: ButtonComponent = React.forwardRef(
   ) {
     const Component = as || "button";
     className = clsx(baseStyles[variant], variantStyles[variant][color]);
+    console.log({ variant, color, styles: variantStyles[variant][color] });
     return (
       <Component ref={ref} className={className} {...props}>
         {children}

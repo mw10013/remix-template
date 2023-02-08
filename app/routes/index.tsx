@@ -20,6 +20,7 @@ export default function Index() {
           PolymorphicText1
         </PolymorphicText1>
         <PolymorphicButton1>Default1</PolymorphicButton1>
+        <PolymorphicButton1 variant="outline">Outline</PolymorphicButton1>
         <PolymorphicButton>Default</PolymorphicButton>
         <PolymorphicButton
           as="button"
