@@ -1,11 +1,13 @@
-import { Example } from "@/components/PolymorphicComponentOhans";
+import { Example as GenericForwardRefExample } from "@/components/GenericForwardRef";
+import { Example as ExampleOhans } from "@/components/PolymorphicComponentOhans";
 
 export default function Index() {
   // const { session } = useOutletContext<ContextType>();
   return (
     <div className="mt-8 px-4 sm:px-6 lg:px-8">
       <div className="text-4xl font-bold">Remix Template</div>
-      <Example />
+      <ExampleOhans />
+      <GenericForwardRefExample />
       {/* <div className="flex flex-col w-32 mx-auto gap-4 mt-8">
         <PolymorphicText1 color="green" font="heavy" size="8">
           PolymorphicText1
