@@ -1,21 +1,12 @@
-import {
-  PolymorphicButton,
-  PolymorphicText,
-} from "@/components/PolymorphicComponent";
-import {
-  Text as PolymorphicText1,
-  Button as PolymorphicButton1,
-} from "@/components/PolymorphicComponent1";
-import { Link } from "@remix-run/react";
+import { Example } from "@/components/PolymorphicComponentOhans";
 
 export default function Index() {
   // const { session } = useOutletContext<ContextType>();
   return (
-    <div className="mt-8 max-w-sm mx-auto font-bold text-lg">
-      <PolymorphicText as="div" color="indigo" className="text-4xl">
-        Remix Template
-      </PolymorphicText>
-      <div className="flex flex-col w-32 mx-auto gap-4 mt-8">
+    <div className="mt-8 max-w-sm mx-auto font-bold text-lg px-4 sm:px-6 lg:px-8">
+      <div className="text-4xl">Remix Template</div>
+      <Example />
+      {/* <div className="flex flex-col w-32 mx-auto gap-4 mt-8">
         <PolymorphicText1 color="green" font="heavy" size="8">
           PolymorphicText1
         </PolymorphicText1>
@@ -60,7 +51,7 @@ export default function Index() {
         >
           Link
         </PolymorphicButton>
-      </div>
+      </div> */}
     </div>
   );
 }
