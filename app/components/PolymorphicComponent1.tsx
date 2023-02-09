@@ -122,34 +122,50 @@ const variantStyles = {
   },
 };
 
-interface ButtonBaseProps {
+type T = keyof typeof variantStyles;
+type T1 = keyof (typeof variantStyles)["solid"];
+type T2 = keyof (typeof variantStyles)["outline"];
+type T3<V extends keyof typeof variantStyles> = keyof (typeof variantStyles)[V];
+type T4 = T3<"solid">;
+type T5 = T3<"outline">;
+
+interface ButtonBaseProps<V extends keyof typeof variantStyles> {
   children: React.ReactNode;
   variant?: keyof typeof variantStyles;
-  color?: keyof (typeof variantStyles)["solid"];
+  color?: keyof (typeof variantStyles)[V];
   className?: string;
 }
 
-type ButtonProps<C extends React.ElementType> =
-  PolymorphicComponentPropsWithRef<C, ButtonBaseProps>;
+type ButtonProps<
+  C extends React.ElementType,
+  V extends keyof typeof variantStyles
+> = PolymorphicComponentPropsWithRef<C, ButtonBaseProps<V>>;
 
-type ButtonComponent = <C extends React.ElementType = "button">(
-  props: ButtonProps<C>
+type ButtonComponent = <
+  C extends React.ElementType = "button",
+  V extends keyof typeof variantStyles = "solid"
+>(
+  props: ButtonProps<C, V>
 ) => React.ReactElement | null;
 
 export const Button: ButtonComponent = React.forwardRef(
-  function PolymorphicButtonComponent<C extends React.ElementType = "button">(
+  function PolymorphicButtonComponent<
+    C extends React.ElementType = "button",
+    V extends keyof typeof variantStyles = "solid"
+  >(
     {
       as,
       children,
       variant = "solid",
-      color = "cyan",
+      color,
       className,
       ...props
-    }: ButtonProps<C>,
+    }: ButtonProps<C, V>,
     ref?: PolymorphicRef<C>
   ) {
     const Component = as || "button";
-    className = clsx(baseStyles[variant], variantStyles[variant][color]);
+    const colorIndex: keyof (typeof variantStyles)[V] = color ?? "gray";
+    className = clsx(baseStyles[variant], variantStyles[variant][colorIndex]);
     console.log({ variant, color, styles: variantStyles[variant][color] });
     return (
       <Component ref={ref} className={className} {...props}>
